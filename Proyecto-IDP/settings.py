@@ -88,7 +88,10 @@ WSGI_APPLICATION = "Proyecto-IDP.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+"""
+    Configuración de la base de datos llamada fitgym, con mysql para localhost y puerto 3306.
+    A su vez, para los tests se crea una base de datos ficticia que luego se elimina
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -108,7 +111,9 @@ if 'test' in sys.argv:
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
+"""
+    Validadores para la contraseña del usuario
+"""
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -145,7 +150,6 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_URL = '/static/'
-
 
 LOGIN_URL = "inicio_sesion"
 

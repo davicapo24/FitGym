@@ -1,7 +1,7 @@
 <form enctype="multipart/form-data" method="post">
   {% csrf_token %} 
   {% for campo in formulario %}
-    <div class="mb-3">
+    <div class="mb-3 sm:px-0 px-4">
       <label for="" class="form-label">{{ campo.label }}: </label>
       {% if campo.field.widget.input_type == 'file' and campo.value %}
       <br>
@@ -22,10 +22,8 @@
     <input
       name=""
       id=""
-      class="btn btn-success"
+      class="btn btn-success sm:px-0 mt-4 mx-4"
       type="submit"
       value="Enviar información"
-    />
-
-    
+    />    
 </form>

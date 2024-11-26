@@ -2,32 +2,32 @@
 {%endblock %} {% block contenido %} 
 
 {% if mostrar_ejercicios %}
-<div class="title border-b-2 flex justify-between border-black mx-8 my-8">
-    <h1 class="text-2xl font-bold"> Ejercicios </h1>
-    <form method="GET" action="" class="flex items-center space-x-2">
-        <input
-            type="text"
-            name="q"
-            value="{{ busqueda }}"
-            placeholder="Buscar..."
-            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
-        />
-        <button
-            type="submit"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-            Buscar <i class="ms-2 mt-1 fas fa-search"></i>
-        </button>
-    </form>
-    {% if user.is_staff %}
-    <a
-        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
-        href="{% url 'crear_ejercicio' %}"
-        role="button"
-    >
-        Nuevo
-    </a>
-    {% endif %}
+<div class="title ejer border-b-2 flex justify-between border-black mx-8 my-8">
+  <h1 class="text-2xl font-bold"> Ejercicios </h1>
+  <form method="GET" action="" class="flex mb-2 items-center space-x-2">
+      <input
+          type="text"
+          name="q"
+          value="{{ busqueda }}"
+          placeholder="Buscar..."
+          class="px-4 py-2 border ejerf border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+      />
+      <button
+          type="submit"
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+          Buscar <i class="ms-2 mt-1 fas fa-search"></i>
+      </button>
+  </form>
+  {% if user.is_staff %}
+  <a
+      class="inline-flex ejera no-underline items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+      href="{% url 'crear_ejercicio' %}"
+      role="button"
+  >
+      Nuevo
+  </a>
+  {% endif %}
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
@@ -47,10 +47,10 @@
           </p>
           {% if user.is_staff %}
           <div class="mt-auto flex justify-between">
-              <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300" href="{% url 'editar_ejercicio' ejercicio.id %}">
+              <a class="no-underline inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300" href="{% url 'editar_ejercicio' ejercicio.id %}">
                   Editar
               </a>
-              <a class="inline-flex eliminar items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300" href="{% url 'eliminar_ejercicio' ejercicio.id %}">
+              <a class="no-underline inline-flex eliminar items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300" href="{% url 'eliminar_ejercicio' ejercicio.id %}">
                   Eliminar
               </a>
           </div>
@@ -92,15 +92,15 @@
 <br />
 
 {% else %}
-<div class="title border-b-2 flex justify-between border-black mx-8 my-8">
+<div class="title border-b-2 entr flex justify-between border-black mx-8 my-8">
   <h1 class="text-2xl font-bold"> Entrenamientos </h1>
-  <form method="GET" action="" class="flex items-center space-x-2">
+  <form method="GET" action="" class="flex mb-2 items-center space-x-2">
     <input
       type="text"
       name="q"
       value="{{ busqueda }}"
       placeholder="Buscar..."
-      class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+      class="px-4 py-2 border entrf border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
   />
   <button
       type="submit"
@@ -113,7 +113,7 @@
   <a
   name=""
   id=""
-  class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+  class="inline-flex no-underline entra items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
   href="{% url 'crear_entrenamiento' %}"
   role="button"
   >Nuevo</a
@@ -168,12 +168,12 @@
         {% if user.is_authenticated and not user.is_staff %}
     {% if entrenamiento in user.entrenamientos_apuntados.all %}
         <a href="{% url 'desapuntarse_entrenamiento' entrenamiento.id %}"
-           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mb-2">
+           class="md:ms-1 no-underline mt-3 sm:mt-0 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mb-2">
            Desapuntarse
         </a>
     {% else %}
         <a href="{% url 'apuntarse_entrenamiento' entrenamiento.id %}"
-           class="md:ms-2 sm:mt-3 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 mb-2">
+           class="md:ms-1 no-underline inline-flex items-center px-3 py-2 mt-3 sm:mt-0 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 mb-2">
            Apuntarse
         </a>
     {% endif %}

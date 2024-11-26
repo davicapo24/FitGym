@@ -1,0 +1,81 @@
+{% extends "paginas/base.html" %} {% block titulo %} Entrenamiento {%endblock %}
+{% block contenido %}
+
+{% if entrenamiento %}
+<section class="text-gray-600 body-font overflow-hidden">
+    <div class="container ">
+      <div class="mx-auto flex flex-wrap">
+        <div class="w-full ">
+            <div
+              class="flex justify-between items-center mt-3 text-gray-600"
+            >
+            <h1 class="text-gray-900 mb-4 text-3xl title-font font-medium ">{{ entrenamiento.titulo }}</h1>
+            {% if user.is_staff %}
+
+            <div>
+              <a
+              class="inline-flex eliminar items-center px-3 py-2 text-sm font-medium text-center text-white  bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mb-2"
+              href="{% url 'eliminar_entrenamiento' entrenamiento.id %}"
+              >
+              Eliminar
+              </a>
+              <a
+                  class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mb-2"
+                  href="{% url 'editar_entrenamiento' entrenamiento.id %}"
+              >
+                  Editar
+              </a> 
+            </div>
+            {% endif %}
+          
+          
+            </div>
+          <div class="flex mb-4">
+            <a href="?mostrar=descripcion" class="flex-grow {% if mostrar == 'descripcion' %}text-indigo-500 border-b-2 border-indigo-500{% else %}border-b-2 border-gray-300{% endif %} py-2 text-lg px-1">
+                Descripción
+            </a>
+            <a href="?mostrar=ejercicios" class="flex-grow {% if mostrar == 'ejercicios' %}text-indigo-500 border-b-2 border-indigo-500{% else %}border-b-2 border-gray-300{% endif %} py-2 text-lg px-1">
+                Ejercicios
+            </a>
+        </div>
+        
+        {% if mostrar == 'descripcion' %}
+        <div class="leading-relaxed mb-4">
+            <p>{{ entrenamiento.descripcion }}</p>
+            <img alt="Imagen de entrenamiento" class="w-30 h-30" src="{{ entrenamiento.imagen.url }}">
+        </div>
+        {% endif %}
+        
+        {% if mostrar == 'ejercicios' %}
+<div class="grid grid-cols-2 gap-6 mt-4">
+    {% for ejercicio in ejercicios %}
+    <div class="border rounded-lg p-6 text-center bg-gray-50 shadow">
+        <h3 class="text-lg font-semibold mb-4">{{ ejercicio.nombre }}</h3>
+        <img src="{{ ejercicio.imagen.url }}" alt="Ejercicio {{ ejercicio.nombre }}" class="mx-auto mb-4 h-32 w-32 object-cover" />
+        <p class="text-base mb-4">{{ ejercicio.descripcion }}</p>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<div class="flex justify-center mt-4 mb-4">
+  <div class="inline-flex rounded-md shadow-sm -space-x-px">
+    {% if ejercicios.has_previous %}
+    <a href="?page=1&mostrar=ejercicios" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100">Primero</a>
+    <a href="?page={{ ejercicios.previous_page_number }}&mostrar=ejercicios" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100">Anterior</a>
+    {% endif %}
+    
+    <span class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300">Página {{ ejercicios.number }} de {{ ejercicios.paginator.num_pages }}</span>
+    
+    {% if ejercicios.has_next %}
+    <a href="?page={{ ejercicios.next_page_number }}&mostrar=ejercicios" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100">Siguiente</a>
+    <a href="?page={{ ejercicios.paginator.num_pages }}&mostrar=ejercicios" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100">Último</a>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+       
+      </div>
+    </div>
+  </section>
+  {% endif %}
+{%endblock%}

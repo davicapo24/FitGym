@@ -1,0 +1,40 @@
+{% extends "paginas/base.html" %}
+{%load static%}
+{% block titulo %} Editar ejercicio {% endblock %}
+
+{% block contenido %}
+<div class="min-h-screen flex justify-center bg-gray-100">
+  <div class="max-w-screen-xl sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+    <div class="flex-1 bg-secundaryt text-center hidden lg:flex">
+      <div
+        class="w-full bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{% static 'private-files/ImagenNuevoEjercicio.jpeg' %}');"
+      ></div>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="lg:w-2/3 xl:w-12/12 sm:p-12">
+      {% csrf_token %}
+      <div class="flex justify-between items-center mx-4 mt-3">
+        <a href="{% url 'ejercicios' %}">
+          <svg
+            class="w-6 h-6 text-gray-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </a>
+        <h2 class="text-xl font-semibold text-gray-800">Editar ejercicio</h2>
+      </div>
+
+      <div class="mt-8">
+        <div class="mx-auto max-w-xl">
+          {% include 'ejercicios/form.html' %}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+{% endblock %}

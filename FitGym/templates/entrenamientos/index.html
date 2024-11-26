@@ -1,0 +1,225 @@
+{% extends "paginas/base.html" %} {% block titulo %} Lista de entrenamientos
+{%endblock %} {% block contenido %} 
+
+{% if mostrar_ejercicios %}
+<div class="title border-b-2 flex justify-between border-black mx-8 my-8">
+    <h1 class="text-2xl font-bold"> Ejercicios </h1>
+    <form method="GET" action="" class="flex items-center space-x-2">
+        <input
+            type="text"
+            name="q"
+            value="{{ busqueda }}"
+            placeholder="Buscar..."
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+        />
+        <button
+            type="submit"
+            class="inline-flex underline items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+            Buscar
+        </button>
+    </form>
+    {% if user.is_staff %}
+    <a
+        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+        href="{% url 'crear_ejercicio' %}"
+        role="button"
+    >
+        Nuevo
+    </a>
+    {% endif %}
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
+  {% for ejercicio in ejercicios %}
+  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
+      <a href="#" class="flex justify-center items-center">
+          <img class="rounded-t-lg w-64 h-64 mt-3 object-cover" src="{{ ejercicio.imagen.url }}" alt="" />
+      </a>
+      <div class="p-5 flex-1 flex flex-col">
+          <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {{ ejercicio.nombre }}
+              </h5>
+          </a>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {{ ejercicio.descripcion }}
+          </p>
+          {% if user.is_staff %}
+          <div class="mt-auto flex justify-between">
+              <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300" href="{% url 'editar_ejercicio' ejercicio.id %}">
+                  Editar
+              </a>
+              <a class="inline-flex eliminar items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300" href="{% url 'eliminar_ejercicio' ejercicio.id %}">
+                  Eliminar
+              </a>
+          </div>
+          {% endif %}
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+  <br />
+
+  <div class="flex justify-center mt-4 mb-4">
+    <div class="inline-flex rounded-md shadow-sm -space-x-px">
+        {% if ejercicios.has_previous %}
+        <a href="?page=1{% if busqueda %}&q={{ busqueda }}{% endif %}" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100">
+            Primero
+        </a>
+        <a href="?page={{ ejercicios.previous_page_number }}{% if busqueda %}&q={{ busqueda }}{% endif %}" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100">
+            Anterior
+        </a>
+        {% endif %}
+
+        <span class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300">
+            Página {{ ejercicios.number }} de {{ ejercicios.paginator.num_pages }}
+        </span>
+
+        {% if ejercicios.has_next %}
+        <a href="?page={{ ejercicios.next_page_number }}{% if busqueda %}&q={{ busqueda }}{% endif %}" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100">
+            Siguiente
+        </a>
+        <a href="?page={{ ejercicios.paginator.num_pages }}{% if busqueda %}&q={{ busqueda }}{% endif %}" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100">
+            Último
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+
+<br />
+
+{% else %}
+<div class="title border-b-2 flex justify-between border-black mx-8 my-8">
+  <h1 class="text-2xl font-bold"> Entrenamientos </h1>
+  <form method="GET" action="" class="flex items-center space-x-2">
+    <input
+      type="text"
+      name="q"
+      value="{{ busqueda }}"
+      placeholder="Buscar..."
+      class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+  />
+  <button
+      type="submit"
+      class="inline-flex  items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  >
+      Buscar <i class="ms-2 mt-1  fas fa-search"></i>
+  </button>
+  </form>
+  {% if user.is_staff %}
+  <a
+  name=""
+  id=""
+  class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+  href="{% url 'crear_entrenamiento' %}"
+  role="button"
+  >Nuevo</a
+>
+{%endif%}
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
+  {% for entrenamiento in entrenamientos %}
+  <div
+    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between"
+  >
+    <a href="#" class="flex justify-center items-center">
+      <img
+        class="rounded-t-lg w-100 h-64 object-cover"
+        src="{{ entrenamiento.imagen.url }}"
+        alt=""
+      />
+    </a>
+    <div class="p-5 flex-1 flex flex-col">
+      <a href="#">
+        <h5
+          class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+        >
+          {{ entrenamiento.titulo }}
+        </h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        {{ entrenamiento.descripcion }}
+      </p>
+      <div class="mt-auto">
+        <a
+          href="{% url 'detalles_entrenamiento' entrenamiento.id %}"
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Más información
+          <svg
+            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </a>
+        {% if user.is_authenticated and not user.is_staff %}
+    {% if entrenamiento in user.entrenamientos_apuntados.all %}
+        <a href="{% url 'desapuntarse_entrenamiento' entrenamiento.id %}"
+           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mb-2">
+           Desapuntarse
+        </a>
+    {% else %}
+        <a href="{% url 'apuntarse_entrenamiento' entrenamiento.id %}"
+           class="md:ms-2 sm:mt-3 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 mb-2">
+           Apuntarse
+        </a>
+    {% endif %}
+{% endif %}  
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+  <br />
+</div>
+<div class="flex justify-center mt-4 mb-4">
+  <div class="inline-flex rounded-md shadow-sm -space-x-px">
+    {% if entrenamientos.has_previous %}
+    <a
+      href="?page=1{% if busqueda %}&q={{ busqueda }}{% endif %}"
+      class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100"
+      >Primero</a
+    >
+    <a
+      href="?page={{ entrenamientos.previous_page_number }}{% if busqueda %}&q={{ busqueda }}{% endif %}"
+      class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100"
+      >Anterior</a
+    >
+    {% endif %}
+
+    <span
+      class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300"
+      >Página {{ entrenamientos.number }} de {{ entrenamientos.paginator.num_pages}}</span
+    >
+
+    {% if entrenamientos.has_next %}
+    <a
+      href="?page={{ entrenamientos.next_page_number }}{% if busqueda %}&q={{ busqueda }}{% endif %}"
+      class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100"
+      >Siguiente</a
+    >
+    <a
+      href="?page={{ entrenamientos.paginator.num_pages }}{% if busqueda %}&q={{ busqueda }}{% endif %}"
+      class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100"
+      >Último</a
+    >
+    {% endif %}
+  </div>
+</div>
+<br />
+
+{%endif%} 
+{% endblock %}

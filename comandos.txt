@@ -1,0 +1,19 @@
+python manage.py tailwind start -- Activar tailwind
+python manage.py runserver -- Arrancar servidor
+.\venv\Scripts\activate -- Activar el entorno virtual
+python manage.py migrate -- Migrar BBDD
+python manage.py makemigrations -- Hacer migraciones BBDD
+python manage.py createsuperuser -- Crear admin
+python manage.py startapp FitGym -- Crear aplicación Django
+
+pip install django-tailwind -- Instalar django-tailwind
+pip install django-tailwind[reload] -- Instalar django-tailwind para la última versión
+python manage.py tailwind install -- Instalar tailwind para el proyecto de python
+python manage.py tailwind start -- Iniciar tailwind
+
+
+Entrenamiento de Espalda -- Entrenamiento de ejemplo
+Este entrenamiento está diseñado para trabajar de manera integral los músculos de la espalda, enfocándose en la amplitud y el grosor de la misma. Con una combinación de ejercicios que activan tanto los dorsales, los romboides y el trapecio, así como los músculos de la parte baja de la espalda, este entrenamiento es ideal para fortalecer y mejorar la postura, además de desarrollar una espalda más ancha y fuerte.
+
+Face Pull -- Ejercicio de ejemplo
+El face pull es un ejercicio que trabaja los músculos de la parte superior de la espalda, especialmente los trapecios, los deltoides posteriores y los romboides. Se realiza usando una cuerda en una máquina de polea alta. De pie frente a la máquina, tira de la cuerda hacia tu cara, manteniendo los codos elevados y alineados con los hombros.

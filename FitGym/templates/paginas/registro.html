@@ -1,0 +1,142 @@
+{% extends "paginas/base.html" %}
+{% load static %}
+{% block contenido %}
+
+<body style="margin: 0; padding: 0; overflow-x: hidden">
+  <div class="min-h-screen text-gray-900 flex justify-center">
+    <div class="max-w-screen-xl sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+      <div class="flex-1 text-center hidden lg:flex">
+        <div
+          class="w-full bg-cover bg-center bg-no-repeat"
+          style="background-image: url('{% static 'private-files/ImagenLogin.jpeg' %}');"
+        ></div>
+      </div>
+      
+      <form method="post" class="lg:w-1/2 xl:w-5/12 sm:w-full sm:p-12 mx-auto">
+        {% csrf_token %}
+        <div class="flex justify-between items-center mx-4 mt-3">
+          <a href="{% url 'inicio' %}">
+            <svg
+              class="w-6 h-6 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </a>
+          <img src="{% static 'private-files/Logo-FitGym.png' %}" width="80px" />
+        </div>
+
+        <div class="flex flex-col items-center mb-4">
+          <div class="w-full flex-1">
+            <div class="my-12 border-b text-center">
+              <div
+                class="leading-none px-2 inline-block text-lg text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2"
+              >
+                Registrar tus credenciales
+              </div>
+            </div>
+            <div class="mx-auto max-w-xl">
+              <form method="POST" class="space-y-6">
+                {% csrf_token %}
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="mb-4">
+                    <label for="{{ form.nombre.id_for_label }}" class="block text-gray-700 font-semibold">{{ form.nombre.label }}</label>
+                    <input
+                      class="w-full px-8 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="text" name="nombre" value="{{ form.nombre.value | default:'' }}" required
+                    />
+                    {% if form.nombre.errors %}
+                      <p class="text-red-500 text-xs italic">{{ form.nombre.errors|join:", " }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="mb-4">
+                    <label for="{{ form.apellidos.id_for_label }}" class="block text-gray-700 font-semibold">{{ form.apellidos.label }}</label>
+                    <input
+                      class="w-full px-8 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="text" name="apellidos" value="{{ form.apellidos.value | default:''}}" required
+                    />
+                    {% if form.apellidos.errors %}
+                      <p class="text-red-500 text-xs italic">{{ form.apellidos.errors|join:", " }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="mb-4">
+                    <label for="{{ form.username.id_for_label }}" class="block text-gray-700 font-semibold">{{ form.username.label }}</label>
+                    <input
+                      class="w-full px-8 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="text" name="username" value="{{ form.username.value | default:''}}" required
+                    />
+                    {% if form.username.errors %}
+                      <p class="text-red-500 text-xs italic">{{ form.username.errors|join:", " }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="mb-4">
+                    <label for="{{ form.email.id_for_label }}" class="block text-gray-700 font-semibold">{{ form.email.label }}</label>
+                    <input
+                      class="w-full px-8 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="email" name="email" value="{{ form.email.value | default:''}}" required
+                    />
+                    {% if form.email.errors %}
+                      <p class="text-red-500 text-xs italic">{{ form.email.errors|join:", " }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="mb-4">
+                    <label for="{{ form.password1.id_for_label }}" class="block text-gray-700 font-semibold">{{ form.password1.label }}</label>
+                    <input
+                      class="w-full px-8 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="password" name="password1" required
+                    />
+                    {% if form.password1.errors %}
+                      <p class="text-red-500 text-xs italic">{{ form.password1.errors|join:", " }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="mb-4">
+                    <label for="{{ form.password2.id_for_label }}" class="block text-gray-700 font-semibold">{{ form.password2.label }}</label>
+                    <input
+                      class="w-full px-8 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="password" name="password2" required
+                    />
+                    {% if form.password2.errors %}
+                      <p class="text-red-500 text-xs italic">{{ form.password2.errors|join:", " }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="flex justify-center">
+                  <button type="submit" class="mt-6 tracking-wide font-semibold bg-blue-500 text-white w-full py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 ease-in-out">
+                    <svg class="w-6 h-6 inline-block" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                      <circle cx="8.5" cy="7" r="4"></circle>
+                      <path d="M20 8v6M23 11h-6"></path>
+                    </svg>
+                    <span class="ml-2">Registrar</span>
+                  </button>
+                </div>
+
+                <div class="flex justify-center items-center mt-6 text-xs text-gray-600">
+                  <span class="mt-2">
+                    Estoy de acuerdo con la política de privacidad de FitGym
+                  </span>
+                  <a class="ml-2 text-blue-500 hover:underline" href="{% url 'inicio_sesion' %}">
+                    ¿Ya tienes una cuenta?
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

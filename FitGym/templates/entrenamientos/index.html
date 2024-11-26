@@ -10,18 +10,18 @@
           name="q"
           value="{{ busqueda }}"
           placeholder="Buscar..."
-          class="px-4 py-2 border ejerf border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+          class="px-4 py-2 border ejerf border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700"
       />
       <button
           type="submit"
-          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
       >
-          Buscar <i class="ms-2 mt-1 fas fa-search"></i>
+          Buscar <i class="ms-2 fas fa-search"></i>
       </button>
   </form>
   {% if user.is_staff %}
   <a
-      class="inline-flex ejera no-underline items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+      class="inline-flex ejera no-underline items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mb-2"
       href="{% url 'crear_ejercicio' %}"
       role="button"
   >
@@ -32,17 +32,17 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
   {% for ejercicio in ejercicios %}
-  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
+  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
       <a href="#" class="flex justify-center items-center">
           <img class="rounded-t-lg w-64 h-64 mt-3 object-cover" src="{{ ejercicio.imagen.url }}" alt="" />
       </a>
       <div class="p-5 flex-1 flex flex-col">
           <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                   {{ ejercicio.nombre }}
               </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p class="mb-3 font-normal text-gray-700">
               {{ ejercicio.descripcion }}
           </p>
           {% if user.is_staff %}
@@ -100,20 +100,20 @@
       name="q"
       value="{{ busqueda }}"
       placeholder="Buscar..."
-      class="px-4 py-2 border entrf border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+      class="px-4 py-2 border entrf border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-sm font-medium text-gray-700"
   />
   <button
       type="submit"
-      class="inline-flex  items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      class="inline-flex  items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
   >
-      Buscar <i class="ms-2 mt-1  fas fa-search"></i>
+      Buscar <i class="ms-2 fas fa-search"></i>
   </button>
   </form>
   {% if user.is_staff %}
   <a
   name=""
   id=""
-  class="inline-flex no-underline entra items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-2"
+  class="inline-flex no-underline entra items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mb-2"
   href="{% url 'crear_entrenamiento' %}"
   role="button"
   >Nuevo</a
@@ -123,7 +123,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
   {% for entrenamiento in entrenamientos %}
   <div
-    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between"
+    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between"
   >
     <a href="#" class="flex justify-center items-center">
       <img
@@ -135,18 +135,18 @@
     <div class="p-5 flex-1 flex flex-col">
       <a href="#">
         <h5
-          class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          class="mb-2 text-2xl font-bold tracking-tight text-gray-900"
         >
           {{ entrenamiento.titulo }}
         </h5>
       </a>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+      <p class="mb-3 font-normal text-gray-700">
         {{ entrenamiento.descripcion }}
       </p>
       <div class="mt-auto">
         <a
           href="{% url 'detalles_entrenamiento' entrenamiento.id %}"
-          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           Más información
           <svg

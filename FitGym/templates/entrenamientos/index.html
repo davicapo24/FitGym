@@ -29,7 +29,7 @@
   </a>
   {% endif %}
 </div>
-
+{% if ejercicios %}
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
   {% for ejercicio in ejercicios %}
   <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
@@ -59,7 +59,11 @@
   </div>
   {% endfor %}
 </div>
-
+{% else %}
+  <div class="mx-8 mt-4 text-center text-lg text-gray-600">
+    <p>No hay ejercicios con ese título.</p>
+  </div>
+{% endif %}
   <br />
 
   <div class="flex justify-center mt-4 mb-4">
@@ -120,6 +124,8 @@
 >
 {%endif%}
 </div>
+{% if entrenamientos %}
+
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 mx-8">
   {% for entrenamiento in entrenamientos %}
   <div
@@ -183,6 +189,11 @@
   </div>
   {% endfor %}
 </div>
+{% else %}
+  <div class="mx-8 mt-4 text-center text-lg text-gray-600">
+    <p>No hay entrenamientos con ese título.</p>
+  </div>
+{% endif %}
   <br />
 </div>
 <div class="flex justify-center mt-4 mb-4">

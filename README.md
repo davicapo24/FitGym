@@ -10,7 +10,7 @@ La plataforma destaca por su combinación de entrenamientos personalizados, entr
 
 Mi aplicación está diseñada para personas de todas las edades y niveles de condición física que buscan un enfoque profesional y personalizado para su entrenamiento. FitGym está dirigida a quienes valoran la orientación experta y desean alcanzar sus metas de manera segura y eficiente.
 
-## Definir el objetivo de la aplicación
+## Objetivo de la aplicación
 
 Desde hace tiempo, voy al gimnasio y entreno, y siempre he hecho la rutina de ejercicios yo por mi propia cuenta, sin apenas conocimiento al principio.
 Y a parte, no he contratado ningún entrenador personal debido al gasto que eso supone, por ello he decidido crear una aplicación donde tengas múltiples opciones de entrenamientos a tu disposición y medida.

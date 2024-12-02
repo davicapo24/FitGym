@@ -15,7 +15,7 @@
             <div>
               <a
               class="inline-flex no-underline eliminar items-center px-3 py-2 text-sm font-medium text-center text-white  bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 mb-2"
-              href="{% url 'eliminar_entrenamiento' entrenamiento.id %}"
+              href="{% url 'eliminar_entrenamiento' entrenamiento.id %}" data-id="{{ entrenamiento.id }}"
               >
               Eliminar
               </a>
@@ -78,4 +78,30 @@
     </div>
   </section>
   {% endif %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const eliminarLinks = document.querySelectorAll('.eliminar');
+        eliminarLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); 
+                const url = link.getAttribute('href');
+                const id = link.dataset.id;
+                Swal.fire({
+                    title: `¿Estás seguro de eliminar el ejercicio con ID ${id}?`,
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url; 
+                    }
+                });
+            });
+        });
+    });
+</script>
 {%endblock%}

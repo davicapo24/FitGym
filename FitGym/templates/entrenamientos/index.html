@@ -50,7 +50,7 @@
               <a class="no-underline inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300" href="{% url 'editar_ejercicio' ejercicio.id %}">
                   Editar
               </a>
-              <a class="no-underline inline-flex eliminar items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300" href="{% url 'eliminar_ejercicio' ejercicio.id %}">
+              <a class="no-underline inline-flex eliminar items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300" href="{% url 'eliminar_ejercicio' ejercicio.id %}" data-id="{{ ejercicio.id }}">
                   Eliminar
               </a>
           </div>
@@ -222,4 +222,30 @@
 <br />
 
 {%endif%} 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const eliminarLinks = document.querySelectorAll('.eliminar');
+        eliminarLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); 
+                const url = link.getAttribute('href');
+                const id = link.dataset.id;
+                Swal.fire({
+                    title: `¿Estás seguro de eliminar el ejercicio con ID ${id}?`,
+                    text: "¡Esta acción no se puede deshacer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url; 
+                    }
+                });
+            });
+        });
+    });
+</script>
 {% endblock %}

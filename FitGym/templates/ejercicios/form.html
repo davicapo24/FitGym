@@ -15,6 +15,7 @@
         aria-describedby="helpId"
         placeholder="{{ campo.label }}"
         value="{{ campo.value | default:''}}"
+        required
       />
     </div>
     <div class="col-12 help-text text-red-500"> {{campo.errors}} </div>

@@ -15,6 +15,8 @@ coverage run --source='.' manage.py test -- Correr los tests
 coverage report -- Genera un reporte de la cobertura del código
 coverage html -- Genera un html con el reporte de la cobertura del código
 
+python manage.py inspectdb > esquema.sql -- Transforma el modelo de datos a .sql 
+
 Entrenamiento de Espalda -- Entrenamiento de ejemplo
 Este entrenamiento está diseñado para trabajar de manera integral los músculos de la espalda, enfocándose en la amplitud y el grosor de la misma. Con una combinación de ejercicios que activan tanto los dorsales, los romboides y el trapecio, así como los músculos de la parte baja de la espalda, este entrenamiento es ideal para fortalecer y mejorar la postura, además de desarrollar una espalda más ancha y fuerte.
 

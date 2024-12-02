@@ -1,3 +1,4 @@
+import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -53,6 +54,8 @@ class UserRegistrationForm(UserCreationForm):
         nombre = self.cleaned_data.get('nombre')
         if not nombre.isalpha():
             raise forms.ValidationError("El nombre solo debe contener letras.")
+        if not re.match('^[a-zA-Z]+$', nombre):
+            raise forms.ValidationError("El nombre solo puede contener letras.")
         return nombre
 
     """
@@ -63,6 +66,8 @@ class UserRegistrationForm(UserCreationForm):
         apellidos = self.cleaned_data.get('apellidos')
         if not apellidos.isalpha():
             raise forms.ValidationError("Los apellidos solo deben contener letras.")
+        if not re.match('^[a-zA-Z]+$', apellidos):
+            raise forms.ValidationError("El apellido solo puede contener letras.")
         return apellidos
 
     """
@@ -82,4 +87,6 @@ class UserRegistrationForm(UserCreationForm):
         username = self.cleaned_data.get('username')
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("Este nombre de usuario ya está en uso.")
+        if not re.match('^[a-zA-Z0-9._-]+$', username):
+            raise forms.ValidationError("El nombre de usuario solo puede contener letras, números, guiones, puntos y guiones bajos.")
         return username

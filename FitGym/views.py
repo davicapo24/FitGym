@@ -91,13 +91,14 @@ def crear_entrenamiento(request):
 def editar_entrenamiento(request, id):
     ejercicios = Ejercicio.objects.all()  # Obtiene todos los ejercicios disponibles
     entrenamiento = Entrenamiento.objects.get(id=id)  # Obtiene el entrenamiento a editar
+    is_editing = True if entrenamiento else False
     formulario = EntrenamientoForm(request.POST or None, request.FILES or None, instance=entrenamiento)  # Rellena el formulario con los datos del entrenamiento
-    
+
     if formulario.is_valid() and request.POST:  # Si el formulario es válido y se envía, guarda los cambios
         formulario.save()
         return redirect('entrenamientos') 
     
-    return render(request, 'entrenamientos/editar_entrenamiento.html', {'formulario': formulario, 'ejercicios': ejercicios, 'show_navbar': True})
+    return render(request, 'entrenamientos/editar_entrenamiento.html', {'formulario': formulario, 'ejercicios': ejercicios, 'is_editing': is_editing, 'show_navbar': True})
 
 """
     Vista protegida por login para eliminar un entrenamiento.
@@ -126,12 +127,13 @@ def crear_ejercicio(request):
 def editar_ejercicio(request, id):
     ejercicio = Ejercicio.objects.get(id=id)  # Obtiene el ejercicio a editar
     formulario = EjercicioForm(request.POST or None, request.FILES or None, instance=ejercicio)  # Rellena el formulario con los datos del ejercicio
-    
+    is_editing = True if ejercicio else False
+
     if formulario.is_valid() and request.POST:  # Si el formulario es válido y se envía, guarda los cambios
         formulario.save()
         return redirect('ejercicios')  
     
-    return render(request, 'ejercicios/editar_ejercicio.html', {'formulario': formulario, 'show_navbar': True})
+    return render(request, 'ejercicios/editar_ejercicio.html', {'formulario': formulario, 'is_editing': is_editing, 'show_navbar': True})
 
 """
     Vista protegida por login para eliminar un ejercicio.

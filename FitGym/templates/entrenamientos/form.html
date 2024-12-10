@@ -4,7 +4,7 @@
     <div class="mb-3 sm:px-0 mx-4">
       <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}: </label>
       
-      {% if campo.field.widget.input_type == 'file' and campo.value %}
+      {% if campo.field.widget.input_type == 'file' and is_editing %}
         <br>
         <img src="{{MEDIA_URL}}/imagenes_entrenamiento/{{campo.value}}" width="100">
       {% endif %}
